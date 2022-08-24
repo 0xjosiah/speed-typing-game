@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 
 function App() {
+  const STARTING_TIME = 5
+
   const [words, setWords] = useState('')
   const [wordCount, setWordCount] = useState(0)
-  const [time, setTime] = useState(6)
+  const [time, setTime] = useState(STARTING_TIME)
   const [isStart, setIsStart] = useState(false)
 
   const handleChange = event => {
@@ -18,10 +20,15 @@ function App() {
 
   const startGame = () => {
     setWordCount(0)
-    setTime(6)
+    setTime(STARTING_TIME)
     setWordCount(0)
     setWords('')
     setIsStart(true)
+  }
+
+  const endGame = () => {
+    setIsStart(false)
+    setWordCount(getWordCount(words))
   }
 
   useEffect(() => {
@@ -29,8 +36,7 @@ function App() {
       setTimeout(() => setTime(time => time - 1), 1000)
     }
     if(time === 0) {
-      setIsStart(false)
-      setWordCount(getWordCount(words))
+      endGame()
     }
   }, [isStart, time])
 
@@ -46,9 +52,7 @@ function App() {
         onChange={handleChange}
       />
       <h4>Time Remaining: {time}</h4>
-      <button 
-        onClick={startGame}
-      >Start</button>
+      <button onClick={startGame}>Start</button>
       <h1>Word Count: {wordCount}</h1>
     </div>
   )
