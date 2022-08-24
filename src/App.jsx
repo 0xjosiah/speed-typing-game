@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 function App() {
   const STARTING_TIME = 5
@@ -7,6 +7,7 @@ function App() {
   const [wordCount, setWordCount] = useState(0)
   const [time, setTime] = useState(STARTING_TIME)
   const [isTimeRunning, setIsTimeRunning] = useState(false)
+  const inputRef = useRef(null)
 
   const handleChange = event => {
     const {value} = event.target
@@ -33,6 +34,7 @@ function App() {
 
   useEffect(() => {
     if(time > 0 && isTimeRunning) {
+      inputRef.current.focus()
       setTimeout(() => setTime(time => time - 1), 1000)
     }
     if(time === 0) {
@@ -51,6 +53,7 @@ function App() {
         value={words}
         onChange={handleChange}
         disabled={!isTimeRunning}
+        ref={inputRef}
       />
       <h4>Time Remaining: {time}</h4>
       <button disabled={isTimeRunning} onClick={startGame}>Start</button>
