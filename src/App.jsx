@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 function App() {
   const [words, setWords] = useState('')
+  const [wordCount, setWordCount] = useState(0)
   const [time, setTime] = useState(6)
   const [isStart, setIsStart] = useState(false)
 
@@ -15,11 +16,22 @@ function App() {
     return arr.filter(word => word !== '').length
   }
 
+  const startGame = () => {
+    setWordCount(0)
+    setTime(6)
+    setWordCount(0)
+    setWords('')
+    setIsStart(true)
+  }
+
   useEffect(() => {
     if(time > 0 && isStart) {
       setTimeout(() => setTime(time => time - 1), 1000)
     }
-    if(time === 0) setIsStart(false)
+    if(time === 0) {
+      setIsStart(false)
+      setWordCount(getWordCount(words))
+    }
   }, [isStart, time])
 
   return (
@@ -35,9 +47,9 @@ function App() {
       />
       <h4>Time Remaining: {time}</h4>
       <button 
-        onClick={() => setIsStart(true)}
+        onClick={startGame}
       >Start</button>
-      <h1>Word Count: {getWordCount(words)}</h1>
+      <h1>Word Count: {wordCount}</h1>
     </div>
   )
 }
