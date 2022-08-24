@@ -21,6 +21,12 @@ button {
   background: #00b800;
   padding: 10px 20px;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: #a5a2a2;
 }
 
 h1 {
@@ -40,6 +46,5 @@ textarea {
 }
 
 textarea:disabled {
-  background-color: #00b80034;
-  color: #00b800;
+  background-color: #a5a2a2;
 }
