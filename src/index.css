@@ -38,3 +38,8 @@ textarea {
   background: #00b800;
   padding: 10px;
 }
+
+textarea:disabled {
+  background-color: #00b80034;
+  color: #00b800;
+}

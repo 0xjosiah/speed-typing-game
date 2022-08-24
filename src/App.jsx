@@ -50,7 +50,7 @@ function App() {
         name='words'
         value={words}
         onChange={handleChange}
-        disabled={isTimeRunning}
+        disabled={!isTimeRunning}
       />
       <h4>Time Remaining: {time}</h4>
       <button disabled={isTimeRunning} onClick={startGame}>Start</button>
