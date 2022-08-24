@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 function App() {
   const [words, setWords] = useState('')
   const [time, setTime] = useState(6)
+  const [isStart, setIsStart] = useState(false)
 
   const handleChange = event => {
     const {value} = event.target
@@ -10,16 +11,19 @@ function App() {
   }
   
   const getWordCount = words => {
-    return words.trim().split(' ').length
+    const arr = words.trim().split(' ')
+    return arr.filter(word => word !== '').length
   }
 
+  const startGame = () => {
+    setIsStart(prevState => !prevState)
+  }
 
   useEffect(() => {
-    console.log('i ran', time)
-    if(time > 0) {
+    if(time > 0 && isStart) {
       setTimeout(() => setTime(time => time - 1), 1000)
     }
-  }, [time])
+  }, [isStart, time])
 
   return (
     <div>
@@ -34,7 +38,7 @@ function App() {
       />
       <h4>Time Remaining: {time}</h4>
       <button 
-        // onClick={handleSubmit}
+        onClick={startGame}
       >Start</button>
       <h1>Word Count: {getWordCount(words)}</h1>
     </div>
