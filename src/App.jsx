@@ -52,7 +52,7 @@ function App() {
         onChange={handleChange}
       />
       <h4>Time Remaining: {time}</h4>
-      <button onClick={startGame}>Start</button>
+      <button disabled={isStart} onClick={startGame}>Start</button>
       <h1>Word Count: {wordCount}</h1>
     </div>
   )
