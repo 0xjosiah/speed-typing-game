@@ -6,7 +6,7 @@ function App() {
   const [words, setWords] = useState('')
   const [wordCount, setWordCount] = useState(0)
   const [time, setTime] = useState(STARTING_TIME)
-  const [isStart, setIsStart] = useState(false)
+  const [isTimeRunning, setIsTimeRunning] = useState(false)
 
   const handleChange = event => {
     const {value} = event.target
@@ -23,22 +23,22 @@ function App() {
     setTime(STARTING_TIME)
     setWordCount(0)
     setWords('')
-    setIsStart(true)
+    setIsTimeRunning(true)
   }
 
   const endGame = () => {
-    setIsStart(false)
+    setIsTimeRunning(false)
     setWordCount(getWordCount(words))
   }
 
   useEffect(() => {
-    if(time > 0 && isStart) {
+    if(time > 0 && isTimeRunning) {
       setTimeout(() => setTime(time => time - 1), 1000)
     }
     if(time === 0) {
       endGame()
     }
-  }, [isStart, time])
+  }, [isTimeRunning, time])
 
   return (
     <div>
@@ -50,9 +50,10 @@ function App() {
         name='words'
         value={words}
         onChange={handleChange}
+        disabled={isTimeRunning}
       />
       <h4>Time Remaining: {time}</h4>
-      <button disabled={isStart} onClick={startGame}>Start</button>
+      <button disabled={isTimeRunning} onClick={startGame}>Start</button>
       <h1>Word Count: {wordCount}</h1>
     </div>
   )
