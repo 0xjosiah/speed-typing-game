@@ -15,14 +15,11 @@ function App() {
     return arr.filter(word => word !== '').length
   }
 
-  const startGame = () => {
-    setIsStart(prevState => !prevState)
-  }
-
   useEffect(() => {
     if(time > 0 && isStart) {
       setTimeout(() => setTime(time => time - 1), 1000)
     }
+    if(time === 0) setIsStart(false)
   }, [isStart, time])
 
   return (
@@ -38,7 +35,7 @@ function App() {
       />
       <h4>Time Remaining: {time}</h4>
       <button 
-        onClick={startGame}
+        onClick={() => setIsStart(true)}
       >Start</button>
       <h1>Word Count: {getWordCount(words)}</h1>
     </div>
