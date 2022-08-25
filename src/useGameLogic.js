@@ -6,7 +6,7 @@ function useGameLogic() {
 
   const [words, setWords] = useState('')
   const [wordCount, setWordCount] = useState(0)
-  const [time, setTime] = useState(selectRef.current.value)
+  const [time, setTime] = useState(5)
   const [isTimeRunning, setIsTimeRunning] = useState(false)
 
   const handleChange = event => {
@@ -26,7 +26,6 @@ function useGameLogic() {
 
   const startGame = () => {
     setWordCount(0)
-    // console.log(selectRef.current)
     setTime(selectRef.current.value)
     setWordCount(0)
     setWords('')
