@@ -1,36 +1,22 @@
 import { useState, useEffect, useRef } from 'react'
+import useGameLogic from './useGameLogic'
 
 function App() {
-  const STARTING_TIME = 5
-
-  const [words, setWords] = useState('')
-  const [wordCount, setWordCount] = useState(0)
-  const [time, setTime] = useState(STARTING_TIME)
-  const [isTimeRunning, setIsTimeRunning] = useState(false)
   const inputRef = useRef(null)
-
-  const handleChange = event => {
-    const {value} = event.target
-    setWords(value)
-  }
-  
-  const getWordCount = words => {
-    const arr = words.trim().split(' ')
-    return arr.filter(word => word !== '').length
-  }
-
-  const startGame = () => {
-    setWordCount(0)
-    setTime(STARTING_TIME)
-    setWordCount(0)
-    setWords('')
-    setIsTimeRunning(true)
-  }
-
-  const endGame = () => {
-    setIsTimeRunning(false)
-    setWordCount(getWordCount(words))
-  }
+  const {
+    words,
+    setWords,
+    wordCount,
+    setWordCount,
+    time,
+    setTime,
+    isTimeRunning,
+    setIsTimeRunning,
+    handleChange,
+    getWordCount,
+    startGame,
+    endGame 
+  } = useGameLogic(5)
 
   useEffect(() => {
     if(time > 0 && isTimeRunning) {
