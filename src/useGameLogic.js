@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 
-function useGameLogic(num) {
-  const STARTING_TIME = num
+function useGameLogic(startingTime = 30) {
   const inputRef = useRef(null)
 
   const [words, setWords] = useState('')
   const [wordCount, setWordCount] = useState(0)
-  const [time, setTime] = useState(STARTING_TIME)
+  const [time, setTime] = useState(startingTime)
   const [isTimeRunning, setIsTimeRunning] = useState(false)
 
   const handleChange = event => {
@@ -21,7 +20,7 @@ function useGameLogic(num) {
 
   const startGame = () => {
     setWordCount(0)
-    setTime(num)
+    setTime(startingTime)
     setWordCount(0)
     setWords('')
     setIsTimeRunning(true)
