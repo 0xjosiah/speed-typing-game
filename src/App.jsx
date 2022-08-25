@@ -1,32 +1,15 @@
-import { useState, useEffect, useRef } from 'react'
 import useGameLogic from './useGameLogic'
 
 function App() {
-  const inputRef = useRef(null)
   const {
     words,
-    setWords,
     wordCount,
-    setWordCount,
     time,
-    setTime,
     isTimeRunning,
-    setIsTimeRunning,
     handleChange,
-    getWordCount,
     startGame,
-    endGame 
+    inputRef
   } = useGameLogic(5)
-
-  useEffect(() => {
-    if(time > 0 && isTimeRunning) {
-      inputRef.current.focus()
-      setTimeout(() => setTime(time => time - 1), 1000)
-    }
-    if(time === 0) {
-      endGame()
-    }
-  }, [isTimeRunning, time])
 
   return (
     <div>
