@@ -39,8 +39,8 @@ function App() {
         <option value={30}>30</option>
         <option value={60}>60</option>
       </select>
-      <h4>Time Remaining: {time}</h4>
       <button disabled={isTimeRunning} onClick={startGame}>Start</button>
+      <h4>Time Remaining: {time}</h4>
       <h1>Word Count: {wordCount}</h1>
     </div>
   )

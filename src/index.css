@@ -15,18 +15,30 @@ body {
 button {
   font-family: 'Press Start 2P', cursive;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
   border: none;
   background: #a80020;
   background: #00b800;
   padding: 10px 20px;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+button:hover {
+  color: #00b800;
+  background: transparent;
+  box-shadow: 0px 0px 0px 3px #00b800;
+  transform: scale(1.125) translate(0px, 5px);
+  transition: all 200ms ease-in-out;
 }
 
 button:disabled {
   cursor: not-allowed;
   background-color: #a5a2a2;
+  transform: none;
+  box-shadow: none;
+  color: #696868;
 }
 
 h1 {
@@ -48,4 +60,30 @@ textarea {
 
 textarea:disabled {
   background-color: #a5a2a2;
+  cursor: not-allowed;
+}
+
+label {
+  margin: 1rem auto;
+  display: block;
+  
+}
+
+select {
+  font-family: 'Press Start 2P', cursive;
+  margin-bottom: 1rem;
+  border: none;
+  background: transparent;
+  border: 3px solid #00b800;
+  color: #00b800;
+  padding: 10px 10px 10px 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+select:disabled {
+  background: #e1dddd;
+  cursor: not-allowed;
+  color: #8e8989;
+  border: 3px solid #8e8989;
 }
